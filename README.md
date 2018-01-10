@@ -53,3 +53,8 @@ truffle(development)> ORPCoinMarket.deployed().then(function(instance){market=in
 truffle(development)> var tokenaddress = token.address;
 truffle(development)> market.setToken.sendTransaction(tokenaddress);
 ```
+
+## Shout out
+
+https://github.com/iam-dev
+https://t.me/idblockchainnetwork
