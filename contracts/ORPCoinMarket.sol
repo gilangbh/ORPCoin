@@ -14,6 +14,7 @@ contract ORPCoinMarket is Ownable, Utils, Pausable {
     uint256 public devPercentage;
     address private devWallet;
     bool public isTokenSet;
+    event SomeoneBuys(uint256 _weiAmount, uint256 _devPortion, uint256 _buyerPortion, address _buyer);
 
     function ORPCoinMarket(uint256 _minimumPurchase, uint256 _devPercentage) {
         minimumPurchase = _minimumPurchase;
@@ -30,21 +31,19 @@ contract ORPCoinMarket is Ownable, Utils, Pausable {
     {
         require(!isTokenSet);
         token = ORPCoin(_token);
+        isTokenSet = true;
         return true;
     }
     
-    function() payable {
-        buyTokens(msg.sender);
-    }
-
-    function buyTokens (address beneficiary) payable {
-        require(beneficiary != 0x0);
+    function() public payable {
         require(validPurchase());
 
         uint256 weiAmount = msg.value;
         uint256 devPortion = SafeMath.div(weiAmount,devPercentage);
+
+        SomeoneBuys(weiAmount, devPortion, weiAmount - devPortion, msg.sender);
         token.mint(devWallet,devPortion);
-        token.mint(beneficiary,weiAmount - devPortion);
+        token.mint(msg.sender,weiAmount - devPortion);
     }
 
     function validPurchase() internal constant returns (bool) {
@@ -52,5 +51,13 @@ contract ORPCoinMarket is Ownable, Utils, Pausable {
         bool moreThanMinimumPurchase = msg.value > minimumPurchase;
 
         return nonZeroPurchase && moreThanMinimumPurchase;
+    }
+
+    function withdrawToken() public {
+        require(token.balanceOf(msg.sender) > 0);
+        
+        address beneficiary = msg.sender;
+        uint256 amount = token.balanceOf(beneficiary);
+        beneficiary.transfer(amount);
     }
 }

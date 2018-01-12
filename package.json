@@ -1,7 +1,7 @@
 {
-  "name": "ori",
-  "version": "0.0.1",
-  "description": "Ori Coin for multi purposes",
+  "name": "ORPCoin",
+  "version": "0.0.2",
+  "description": "ORPCoin for multi purposes",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"

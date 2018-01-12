@@ -217,7 +217,7 @@
       "absolutePath": "/C/Side/ori/installed_contracts/ERC23/contracts/interface/ERC23.sol",
       "exportedSymbols": {
         "ERC23": [
-          1021
+          1105
         ]
       }
     },
@@ -231,41 +231,41 @@
             ".15"
           ]
         },
-        "id": 1004,
+        "id": 1088,
         "name": "PragmaDirective",
         "src": "0:24:7"
       },
       {
         "attributes": {
-          "SourceUnit": 1460,
+          "SourceUnit": 1544,
           "absolutePath": "/C/Side/ori/installed_contracts/ERC23/installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol",
           "file": "../../installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol",
-          "scope": 1022,
+          "scope": 1106,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 1005,
+        "id": 1089,
         "name": "ImportDirective",
         "src": "28:79:7"
       },
       {
         "attributes": {
           "contractDependencies": [
-            1459,
-            1488
+            1543,
+            1572
           ],
           "contractKind": "contract",
           "documentation": "@title ERC23 additions to ERC20\r\n@dev Simpler version of ERC23 interfaceERC23 additions to ERC20\r\nhttps://github.com/Dexaran/ERC23-tokens\r\n\n * Created by IAM <DEV> (Elky Bachtiar) \r\nhttps://www.iamdeveloper.io\r\n\n * @dev compareAndApprove Workaround vulnerability on approve method\r\nhttps://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#\r\n\n ",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            1021,
-            1459,
-            1488
+            1105,
+            1543,
+            1572
           ],
           "name": "ERC23",
-          "scope": 1022
+          "scope": 1106
         },
         "children": [
           {
@@ -279,15 +279,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "ERC20",
-                  "referencedDeclaration": 1459,
+                  "referencedDeclaration": 1543,
                   "type": "contract ERC20"
                 },
-                "id": 1006,
+                "id": 1090,
                 "name": "UserDefinedTypeName",
                 "src": "533:5:7"
               }
             ],
-            "id": 1007,
+            "id": 1091,
             "name": "InheritanceSpecifier",
             "src": "533:5:7"
           },
@@ -302,7 +302,7 @@
               ],
               "name": "transferFrom",
               "payable": false,
-              "scope": 1021,
+              "scope": 1105,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -314,7 +314,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_from",
-                      "scope": 1020,
+                      "scope": 1104,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -327,12 +327,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1008,
+                        "id": 1092,
                         "name": "ElementaryTypeName",
                         "src": "567:7:7"
                       }
                     ],
-                    "id": 1009,
+                    "id": 1093,
                     "name": "VariableDeclaration",
                     "src": "567:13:7"
                   },
@@ -340,7 +340,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_to",
-                      "scope": 1020,
+                      "scope": 1104,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -353,12 +353,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1010,
+                        "id": 1094,
                         "name": "ElementaryTypeName",
                         "src": "582:7:7"
                       }
                     ],
-                    "id": 1011,
+                    "id": 1095,
                     "name": "VariableDeclaration",
                     "src": "582:11:7"
                   },
@@ -366,7 +366,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_value",
-                      "scope": 1020,
+                      "scope": 1104,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -379,12 +379,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 1012,
+                        "id": 1096,
                         "name": "ElementaryTypeName",
                         "src": "595:7:7"
                       }
                     ],
-                    "id": 1013,
+                    "id": 1097,
                     "name": "VariableDeclaration",
                     "src": "595:14:7"
                   },
@@ -392,7 +392,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_data",
-                      "scope": 1020,
+                      "scope": 1104,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes memory",
@@ -405,17 +405,17 @@
                           "name": "bytes",
                           "type": "bytes storage pointer"
                         },
-                        "id": 1014,
+                        "id": 1098,
                         "name": "ElementaryTypeName",
                         "src": "611:5:7"
                       }
                     ],
-                    "id": 1015,
+                    "id": 1099,
                     "name": "VariableDeclaration",
                     "src": "611:11:7"
                   }
                 ],
-                "id": 1016,
+                "id": 1100,
                 "name": "ParameterList",
                 "src": "566:57:7"
               },
@@ -425,7 +425,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "success",
-                      "scope": 1020,
+                      "scope": 1104,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -438,32 +438,32 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1017,
+                        "id": 1101,
                         "name": "ElementaryTypeName",
                         "src": "633:4:7"
                       }
                     ],
-                    "id": 1018,
+                    "id": 1102,
                     "name": "VariableDeclaration",
                     "src": "633:12:7"
                   }
                 ],
-                "id": 1019,
+                "id": 1103,
                 "name": "ParameterList",
                 "src": "632:14:7"
               }
             ],
-            "id": 1020,
+            "id": 1104,
             "name": "FunctionDefinition",
             "src": "545:102:7"
           }
         ],
-        "id": 1021,
+        "id": 1105,
         "name": "ContractDefinition",
         "src": "515:405:7"
       }
     ],
-    "id": 1022,
+    "id": 1106,
     "name": "SourceUnit",
     "src": "0:922:7"
   },
@@ -473,5 +473,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-10T12:40:36.588Z"
+  "updatedAt": "2018-01-11T18:19:19.057Z"
 }

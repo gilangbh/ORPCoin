@@ -10,7 +10,7 @@ module.exports = function(deployer) {
 	const TOKEN_SYMBOL = 'ORP';
 	const DECIMALS = 8;
 	const MINIMUMPURCHASE = 1000000;
-	const DEVPERCENTAGE = 1;
+	const DEVPERCENTAGE = 100;
 
 	deployer.deploy(ORPCoin, OWNER, INITIAL_SUPPLY, TOKEN_NAME, TOKEN_SYMBOL, DECIMALS);
 	deployer.deploy(ORPCoinMarket,MINIMUMPURCHASE,DEVPERCENTAGE);

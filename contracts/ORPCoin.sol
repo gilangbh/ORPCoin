@@ -18,12 +18,14 @@ contract ORPCoin is Ownable, UpgradeableStandard23Token {
     name = _name;
     symbol = _symbol;
     decimals = _decimals;
-    balances[owner] = _initialBalance; // balance of Token address will be 100% of the HME company shares when initialize the contract 
+    balances[owner] = _initialBalance;
     totalSupply = _initialBalance;
   }
 
   event Mint(address indexed to, uint256 amount);
   event MintFinished();
+  event Burn(address indexed burner, uint256 value);
+
 
   bool public mintingFinished = false;
 
@@ -32,7 +34,7 @@ contract ORPCoin is Ownable, UpgradeableStandard23Token {
     _;
   }
 
-  function mint(address _to, uint256 _amount) onlyOwner canMint returns (bool) {
+  function mint(address _to, uint256 _amount) canMint returns (bool) {
     totalSupply = totalSupply.add(_amount);
     balances[_to] = balances[_to].add(_amount);
     Mint(_to, _amount);
@@ -44,5 +46,14 @@ contract ORPCoin is Ownable, UpgradeableStandard23Token {
     mintingFinished = true;
     MintFinished();
     return true;
+  }
+  
+  function burn(uint256 _value) public {
+      require(_value > 0);
+
+      address burner = msg.sender;
+      balances[burner] = balances[burner].sub(_value);
+      totalSupply = totalSupply.sub(_value);
+      Burn(burner, _value);
   }
 }
