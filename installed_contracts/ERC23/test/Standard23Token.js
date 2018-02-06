@@ -1,5 +1,7 @@
 'use strict';
 
+import expectThrow from '../installed_contracts/zeppelin-solidity/test//helpers/expectThrow';
+
 const assertJump = require('../installed_contracts/zeppelin-solidity/test/helpers/assertJump');
 var Standard23TokenMock = artifacts.require('./helpers/Standard23TokenMock.sol');
 
@@ -12,15 +14,11 @@ contract('Standard23Token', function(accounts) {
     const TRANSFER_AMOUNT = 100;
     const APPROVE_AMOUNT = 40;
 
-    let token;
-    let tokenAddress;
+    let token;;
 
     beforeEach(async () => {
         token = await Standard23TokenMock.new(MAIN_ACCOUNT, INITAL_SUPPLY);
-        tokenAddress = token.address;
-        console.log("tokenAddress =  " +tokenAddress);
     });
-
 
     it('Standard23Token #1 should return the correct totalSupply after construction', async function() {
         console.log("Standard23Token #1 BEGIN==========================================================");
@@ -36,7 +34,6 @@ contract('Standard23Token', function(accounts) {
 
     it('Standard23Token #2 should return the correct allowance amount after approval', async function() {
         console.log("Standard23Token #2 BEGIN==========================================================");
-        console.log("SPENDER_ACCOUNT allowed to transfer " +APPROVE_AMOUNT +" because SPENDER_ACCOUNT has " +APPROVE_AMOUNT +" approved amount");
 
         let mainAccountBalanceBeforeTransfer = await token.balanceOf(MAIN_ACCOUNT);
         console.log("mainAccountBalanceBeforeTransfer = " +mainAccountBalanceBeforeTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
@@ -48,7 +45,6 @@ contract('Standard23Token', function(accounts) {
 
         await token.approve(SPENDER_ACCOUNT, APPROVE_AMOUNT);
         console.log("APPROVE_AMOUNT = " +APPROVE_AMOUNT);
-
 
         let allowance = await token.allowance(MAIN_ACCOUNT, SPENDER_ACCOUNT);
         console.log("Allowance = " +allowance +"  of SPENDER_ACCOUNT");
@@ -122,25 +118,22 @@ contract('Standard23Token', function(accounts) {
 
         await token.approve(SPENDER_ACCOUNT, APPROVE_AMOUNT);
         console.log("APPROVE_AMOUNT " +APPROVE_AMOUNT);
-        try {
-            console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
-            await token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT});
-        } catch(error) {
-            let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
-            console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
-            assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
+        
+        console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
+        await expectThrow(token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT}))
+        
+        let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
+        console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
+        assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
 
-            let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
-            console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
-            assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
+        let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
+        console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
+        assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
 
-            let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
-            console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +" should equal to 0");
-            assert.equal(spenderAccountBalanceAfterTransfer, 0);
+        let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
+        console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +" should equal to 0");
+        assert.equal(spenderAccountBalanceAfterTransfer, 0);
 
-            return assertJump(error);
-        }
-        assert.fail('should have thrown before');
     });
 
     it('Standard23Token #5 should throw an error when trying to transfer when not allowed', async function() {
@@ -160,25 +153,21 @@ contract('Standard23Token', function(accounts) {
         console.log("spenderAccountBalanceBeforeTransfer = " +spenderAccountBalanceBeforeTransfer +" should equal to 0");
         assert.equal(spenderAccountBalanceBeforeTransfer, 0);
 
-        try {
-            console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
-            await token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: MAIN_ACCOUNT});
-        } catch(error) {    
-            let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
-            console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
-            assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
+       
+        console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
+        await expectThrow(token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: MAIN_ACCOUNT}));
+        let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
+        console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
+        assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
 
-            let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
-            console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
-            assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
+        let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
+        console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
+        assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
 
-            let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
-            console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +"should equal to 0");
-            assert.equal(spenderAccountBalanceAfterTransfer, 0);
+        let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
+        console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +"should equal to 0");
+        assert.equal(spenderAccountBalanceAfterTransfer, 0);
 
-            return assertJump(error);
-        }
-        assert.fail('should have thrown before');
     });
 
     it('Standard23Token #6 should throw an error when trying to transfer less than 0', async function() {
@@ -201,25 +190,22 @@ contract('Standard23Token', function(accounts) {
 
         await token.approve(RECEIVING_ACCOUNT, APPROVE_AMOUNT);
         console.log("APPROVE_AMOUNT " +APPROVE_AMOUNT);
-        try {
-            console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
-            await token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT});
-        } catch(error) {
-            let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
-            console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
-            assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
+        
+        console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
+        await expectThrow(token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT}));
+        
+        let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
+        console.log("mainAccountBalanceAfterTransfer = " +mainAccountBalanceAfterTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
+        assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
 
-            let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
-            console.log("ReceivingAccountBalanceAfterTransfer should equal to " +ReceivingAccountBalanceAfterTransfer);
-            assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
+        let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
+        console.log("ReceivingAccountBalanceAfterTransfer should equal to " +ReceivingAccountBalanceAfterTransfer);
+        assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
 
-            let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
-            console.log("spenderAccountBalanceAfterTransfer should equal to " +spenderAccountBalanceAfterTransfer);
-            assert.equal(spenderAccountBalanceAfterTransfer, 0);
+        let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
+        console.log("spenderAccountBalanceAfterTransfer should equal to " +spenderAccountBalanceAfterTransfer);
+        assert.equal(spenderAccountBalanceAfterTransfer, 0);
 
-            return assertJump(error);
-        }
-        assert.fail('should have thrown before');
     });
 
 
@@ -243,25 +229,22 @@ contract('Standard23Token', function(accounts) {
 
         await token.approve(RECEIVING_ACCOUNT, APPROVE_AMOUNT);
         console.log("APPROVE_AMOUNT " +APPROVE_AMOUNT);
-        try {
-            console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
-            await token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT});
-        } catch(error) {
-            let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
-            console.log("mainAccountBalanceBeforeTransfer = " +mainAccountBalanceBeforeTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
-            assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
+        
+        console.log("Try to TransferFrom " +TRANSFER_AMOUNT +" MAIN_ACCOUNT to RECEIVING_ACCOUNT from SPENDER_ACCOUNT");
+        await expectThrow(token.transferFrom(MAIN_ACCOUNT, RECEIVING_ACCOUNT, TRANSFER_AMOUNT, {from: SPENDER_ACCOUNT}));
+        
+        let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
+        console.log("mainAccountBalanceBeforeTransfer = " +mainAccountBalanceBeforeTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
+        assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
 
-            let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
-            console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
-            assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
+        let ReceivingAccountBalanceAfterTransfer = await token.balanceOf(RECEIVING_ACCOUNT);
+        console.log("ReceivingAccountBalanceAfterTransfer = " +ReceivingAccountBalanceAfterTransfer +" should equal to 0");
+        assert.equal(ReceivingAccountBalanceAfterTransfer, 0);
 
-            let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
-            console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +" should equal to 0");
-            assert.equal(spenderAccountBalanceAfterTransfer, 0);
-
-            return assertJump(error);
-        }
-        assert.fail('should have thrown before');
+        let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
+        console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +" should equal to 0");
+        assert.equal(spenderAccountBalanceAfterTransfer, 0);
+       
     });
 
 
@@ -278,13 +261,11 @@ contract('Standard23Token', function(accounts) {
         console.log("spenderAccountBalanceBeforeTransfer = " +spenderAccountBalanceBeforeTransfer +" should equal to 0");
         assert.equal(spenderAccountBalanceBeforeTransfer, 0);
 
-      await token.approve(SPENDER_ACCOUNT, APPROVE_AMOUNT);
-      console.log("APPROVE_AMOUNT = " +APPROVE_AMOUNT);
+        await token.approve(SPENDER_ACCOUNT, APPROVE_AMOUNT);
+        console.log("APPROVE_AMOUNT = " +APPROVE_AMOUNT);
 
-      try {
-        let transfer = await token.transferFrom(MAIN_ACCOUNT, 0x0, APPROVE_AMOUNT, {from: SPENDER_ACCOUNT});
-        assert.fail('should have thrown before');
-      } catch(error) {
+        await expectThrow(token.transferFrom(MAIN_ACCOUNT, 0x0, APPROVE_AMOUNT, {from: SPENDER_ACCOUNT}));
+      
         let mainAccountBalanceAfterTransfer = await token.balanceOf(MAIN_ACCOUNT);
         console.log("mainAccountBalanceBeforeTransfer = " +mainAccountBalanceBeforeTransfer +" should equal to INITAL_SUPPLY = " +INITAL_SUPPLY);
         assert.equal(mainAccountBalanceAfterTransfer, INITAL_SUPPLY);
@@ -292,8 +273,7 @@ contract('Standard23Token', function(accounts) {
         let spenderAccountBalanceAfterTransfer = await token.balanceOf(SPENDER_ACCOUNT);
         console.log("spenderAccountBalanceAfterTransfer = " +spenderAccountBalanceAfterTransfer +" should equal to 0");
         assert.equal(spenderAccountBalanceAfterTransfer, 0);
-        assertJump(error);
-      }
+        
     });
 
     describe('Standard23Token #9 validating allowance updates to spender', function() {

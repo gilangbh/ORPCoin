@@ -37,14 +37,14 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.15;\r\n\r\n/*\r\n * Base class contracts willing to accept ERC23 token transfers must conform to.\r\n *\r\n * Sender: msg.sender to the token contract, the address originating the token transfer.\r\n *         - For user originated transfers sender will be equal to tx.origin\r\n *        - For contract originated transfers, tx.origin will be the user that made the tx that produced the transfer.\r\n * Origin: the origin address from whose balance the tokens are sent\r\n *        - For transfer(), origin = msg.sender\r\n *        - For transferFrom() origin = _from to token contract\r\n * Value is the amount of tokens sent\r\n * Data is arbitrary data sent with the token transfer. Simulates ether tx.data\r\n *\r\n * From, origin and value shouldn't be trusted unless the token contract is trusted.\r\n * If sender == tx.origin, it is safe to trust it regardless of the token.\r\n *\r\n * Created by IAM <DEV> (Elky Bachtiar) \r\n * https://www.iamdeveloper.io\r\n*/\r\ncontract ERC23Receiver {\r\n    function tokenFallback(address _sender, address _origin, uint256 _value, bytes _data) returns (bool success);\r\n}\r\n",
-  "sourcePath": "C:\\Side\\ori\\installed_contracts\\ERC23\\contracts\\interface\\ERC23Receiver.sol",
+  "source": "pragma solidity ^0.4.15;\r\n\r\n/*\r\n * Base class contracts willing to accept ERC23 token transfers must conform to.\r\n *\r\n * Sender: msg.sender to the token contract, the address originating the token transfer.\r\n *         - For user originated transfers sender will be equal to tx.origin\r\n *        - For contract originated transfers, tx.origin will be the user that made the tx that produced the transfer.\r\n * Origin: the origin address from whose balance the tokens are sent\r\n *        - For transfer(), origin = msg.sender\r\n *        - For transferFrom() origin = _from to token contract\r\n * Value is the amount of tokens sent\r\n * Data is arbitrary data sent with the token transfer. Simulates ether tx.data\r\n *\r\n * From, origin and value shouldn't be trusted unless the token contract is trusted.\r\n * If sender == tx.origin, it is safe to trust it regardless of the token.\r\n *\r\n * Created by IAM <DEV> (Elky Bachtiar) \r\n * https://www.iamdeveloper.io\r\n *\r\n *\r\n * file: ERC23Receiver.sol\r\n * location: ERC23/contracts/token/interface/\r\n *\r\n*/\r\ncontract ERC23Receiver {\r\n    function tokenFallback(address _sender, address _origin, uint256 _value, bytes _data) returns (bool success);\r\n}\r\n",
+  "sourcePath": "C:\\Side\\ori\\installed_contracts\\ERC23\\contracts\\token\\interface\\ERC23Receiver.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Side/ori/installed_contracts/ERC23/contracts/interface/ERC23Receiver.sol",
+      "absolutePath": "/C/Side/ori/installed_contracts/ERC23/contracts/token/interface/ERC23Receiver.sol",
       "exportedSymbols": {
         "ERC23Receiver": [
-          1168
+          1467
         ]
       }
     },
@@ -58,9 +58,9 @@
             ".15"
           ]
         },
-        "id": 1154,
+        "id": 1453,
         "name": "PragmaDirective",
-        "src": "0:24:9"
+        "src": "0:24:11"
       },
       {
         "attributes": {
@@ -74,10 +74,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            1168
+            1467
           ],
           "name": "ERC23Receiver",
-          "scope": 1169
+          "scope": 1468
         },
         "children": [
           {
@@ -91,7 +91,7 @@
               ],
               "name": "tokenFallback",
               "payable": false,
-              "scope": 1168,
+              "scope": 1467,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -103,7 +103,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_sender",
-                      "scope": 1167,
+                      "scope": 1466,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -116,20 +116,20 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1155,
+                        "id": 1454,
                         "name": "ElementaryTypeName",
-                        "src": "1011:7:9"
+                        "src": "1098:7:11"
                       }
                     ],
-                    "id": 1156,
+                    "id": 1455,
                     "name": "VariableDeclaration",
-                    "src": "1011:15:9"
+                    "src": "1098:15:11"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_origin",
-                      "scope": 1167,
+                      "scope": 1466,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -142,20 +142,20 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1157,
+                        "id": 1456,
                         "name": "ElementaryTypeName",
-                        "src": "1028:7:9"
+                        "src": "1115:7:11"
                       }
                     ],
-                    "id": 1158,
+                    "id": 1457,
                     "name": "VariableDeclaration",
-                    "src": "1028:15:9"
+                    "src": "1115:15:11"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_value",
-                      "scope": 1167,
+                      "scope": 1466,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -168,20 +168,20 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 1159,
+                        "id": 1458,
                         "name": "ElementaryTypeName",
-                        "src": "1045:7:9"
+                        "src": "1132:7:11"
                       }
                     ],
-                    "id": 1160,
+                    "id": 1459,
                     "name": "VariableDeclaration",
-                    "src": "1045:14:9"
+                    "src": "1132:14:11"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_data",
-                      "scope": 1167,
+                      "scope": 1466,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes memory",
@@ -194,19 +194,19 @@
                           "name": "bytes",
                           "type": "bytes storage pointer"
                         },
-                        "id": 1161,
+                        "id": 1460,
                         "name": "ElementaryTypeName",
-                        "src": "1061:5:9"
+                        "src": "1148:5:11"
                       }
                     ],
-                    "id": 1162,
+                    "id": 1461,
                     "name": "VariableDeclaration",
-                    "src": "1061:11:9"
+                    "src": "1148:11:11"
                   }
                 ],
-                "id": 1163,
+                "id": 1462,
                 "name": "ParameterList",
-                "src": "1010:63:9"
+                "src": "1097:63:11"
               },
               {
                 "children": [
@@ -214,7 +214,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "success",
-                      "scope": 1167,
+                      "scope": 1466,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -227,34 +227,34 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1164,
+                        "id": 1463,
                         "name": "ElementaryTypeName",
-                        "src": "1083:4:9"
+                        "src": "1170:4:11"
                       }
                     ],
-                    "id": 1165,
+                    "id": 1464,
                     "name": "VariableDeclaration",
-                    "src": "1083:12:9"
+                    "src": "1170:12:11"
                   }
                 ],
-                "id": 1166,
+                "id": 1465,
                 "name": "ParameterList",
-                "src": "1082:14:9"
+                "src": "1169:14:11"
               }
             ],
-            "id": 1167,
+            "id": 1466,
             "name": "FunctionDefinition",
-            "src": "988:109:9"
+            "src": "1075:109:11"
           }
         ],
-        "id": 1168,
+        "id": 1467,
         "name": "ContractDefinition",
-        "src": "958:142:9"
+        "src": "1045:142:11"
       }
     ],
-    "id": 1169,
+    "id": 1468,
     "name": "SourceUnit",
-    "src": "0:1102:9"
+    "src": "0:1189:11"
   },
   "compiler": {
     "name": "solc",
@@ -262,5 +262,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-11T18:19:19.057Z"
+  "updatedAt": "2018-02-06T10:08:15.609Z"
 }

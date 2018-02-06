@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import '../installed_contracts/ERC23/contracts/UpgradeableStandard23Token.sol';
+import '../installed_contracts/ERC23/contracts/token/UpgradeableStandard23Token.sol';
 import '../installed_contracts/ERC23/installed_contracts/zeppelin-solidity/contracts/ownership/Ownable.sol';
 import '../installed_contracts/ERC23/installed_contracts/zeppelin-solidity/contracts/math/SafeMath.sol';
 
@@ -25,7 +25,6 @@ contract ORPCoin is Ownable, UpgradeableStandard23Token {
   event Mint(address indexed to, uint256 amount);
   event MintFinished();
   event Burn(address indexed burner, uint256 value);
-
 
   bool public mintingFinished = false;
 

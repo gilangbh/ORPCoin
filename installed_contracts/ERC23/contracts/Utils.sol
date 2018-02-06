@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.18;
 
 /**
  * @title Utils 
@@ -8,15 +8,15 @@ pragma solidity ^0.4.15;
  */
 contract Utils {
 
-    /**
-        constructor
-    */
-    function Utils() {
-    }
-
     // verifies that an amount is greater than zero
     modifier greaterThanZero(uint256 _amount) {
         require(_amount > 0);
+        _;
+    }
+
+     // verifies that an amount is greater or equal to zero
+    modifier greaterOrEqualThanZero(uint256 _amount) {
+        require(_amount >= 0);
         _;
     }
 

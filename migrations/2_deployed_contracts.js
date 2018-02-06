@@ -1,5 +1,6 @@
 var ORPCoin = artifacts.require("./ORPCoin.sol");
 var ORPCoinMarket = artifacts.require("./ORPCoinMarket.sol");
+var Roulette = artifacts.require("./Roulette.sol");
 //var HoldmeTokenSale = artifacts.require('./HoldmeTokenSale');
 
 module.exports = function(deployer) {
@@ -14,4 +15,5 @@ module.exports = function(deployer) {
 
 	deployer.deploy(ORPCoin, OWNER, INITIAL_SUPPLY, TOKEN_NAME, TOKEN_SYMBOL, DECIMALS);
 	deployer.deploy(ORPCoinMarket,MINIMUMPURCHASE,DEVPERCENTAGE);
+	deployer.deploy(Roulette,10);
 }

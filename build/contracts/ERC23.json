@@ -210,14 +210,14 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.15;\r\n\r\nimport '../../installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol';\r\n\r\n/**\r\n * @title ERC23 additions to ERC20\r\n * @dev Simpler version of ERC23 interfaceERC23 additions to ERC20\r\n * https://github.com/Dexaran/ERC23-tokens\r\n *\r\n * Created by IAM <DEV> (Elky Bachtiar) \r\n * https://www.iamdeveloper.io\r\n *\r\n * @dev compareAndApprove Workaround vulnerability on approve method\r\n * https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#\r\n *\r\n */\r\ncontract ERC23 is ERC20{\r\n    function transferFrom(address _from, address _to, uint256 _value, bytes _data) returns (bool success);\r\n    //compareAndApprove workaround is fixed by OpenZeppelin\r\n    // With the OpenZeppelin ERC20 is now possible toincrease and decrease approval\r\n   // function compareAndApprove(address _spender, uint256 _currentValue, uint256 _newValue) public returns(bool success);\r\n}\r\n",
-  "sourcePath": "C:\\Side\\ori\\installed_contracts\\ERC23\\contracts\\interface\\ERC23.sol",
+  "source": "pragma solidity ^0.4.18;\r\n\r\nimport '../../../installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol';\r\n\r\n/**\r\n *\r\n * @title ERC23 additions to ERC20\r\n *        derived from OpenZeppelin solidity library\r\n * @dev Simpler version of ERC23 interfaceERC23 additions to ERC20\r\n * @dev see also: https://github.com/Dexaran/ERC23-tokens\r\n *                https://github.com/OpenZeppelin/zeppelin-solidity\r\n *\r\n * Created by IaM <DEV> (Elky Bachtiar) \r\n * https://www.iamdeveloper.io\r\n *\r\n *\r\n * file: ERC23.sol\r\n * location: ERC23/contracts/token/interface/\r\n *\r\n */\r\ncontract ERC23 is ERC20{\r\n    function transferFrom(address _from, address _to, uint256 _value, bytes _data) public returns (bool success);\r\n}\r\n",
+  "sourcePath": "C:\\Side\\ori\\installed_contracts\\ERC23\\contracts\\token\\interface\\ERC23.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Side/ori/installed_contracts/ERC23/contracts/interface/ERC23.sol",
+      "absolutePath": "/C/Side/ori/installed_contracts/ERC23/contracts/token/interface/ERC23.sol",
       "exportedSymbols": {
         "ERC23": [
-          1105
+          1404
         ]
       }
     },
@@ -228,44 +228,44 @@
             "solidity",
             "^",
             "0.4",
-            ".15"
+            ".18"
           ]
         },
-        "id": 1088,
+        "id": 1387,
         "name": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:9"
       },
       {
         "attributes": {
-          "SourceUnit": 1544,
+          "SourceUnit": 1855,
           "absolutePath": "/C/Side/ori/installed_contracts/ERC23/installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol",
-          "file": "../../installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol",
-          "scope": 1106,
+          "file": "../../../installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol",
+          "scope": 1405,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 1089,
+        "id": 1388,
         "name": "ImportDirective",
-        "src": "28:79:7"
+        "src": "28:82:9"
       },
       {
         "attributes": {
           "contractDependencies": [
-            1543,
-            1572
+            1854,
+            1883
           ],
           "contractKind": "contract",
-          "documentation": "@title ERC23 additions to ERC20\r\n@dev Simpler version of ERC23 interfaceERC23 additions to ERC20\r\nhttps://github.com/Dexaran/ERC23-tokens\r\n\n * Created by IAM <DEV> (Elky Bachtiar) \r\nhttps://www.iamdeveloper.io\r\n\n * @dev compareAndApprove Workaround vulnerability on approve method\r\nhttps://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit#\r\n\n ",
+          "documentation": "\n * @title ERC23 additions to ERC20\r\n       derived from OpenZeppelin solidity library\r\n@dev Simpler version of ERC23 interfaceERC23 additions to ERC20\r\n@dev see also: https://github.com/Dexaran/ERC23-tokens\r\n               https://github.com/OpenZeppelin/zeppelin-solidity\r\n\n * Created by IaM <DEV> (Elky Bachtiar) \r\nhttps://www.iamdeveloper.io\r\n\n *\r\nfile: ERC23.sol\r\nlocation: ERC23/contracts/token/interface/\r\n\n ",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            1105,
-            1543,
-            1572
+            1404,
+            1854,
+            1883
           ],
           "name": "ERC23",
-          "scope": 1106
+          "scope": 1405
         },
         "children": [
           {
@@ -279,17 +279,17 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "ERC20",
-                  "referencedDeclaration": 1543,
+                  "referencedDeclaration": 1854,
                   "type": "contract ERC20"
                 },
-                "id": 1090,
+                "id": 1389,
                 "name": "UserDefinedTypeName",
-                "src": "533:5:7"
+                "src": "589:5:9"
               }
             ],
-            "id": 1091,
+            "id": 1390,
             "name": "InheritanceSpecifier",
-            "src": "533:5:7"
+            "src": "589:5:9"
           },
           {
             "attributes": {
@@ -302,7 +302,7 @@
               ],
               "name": "transferFrom",
               "payable": false,
-              "scope": 1105,
+              "scope": 1404,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -314,7 +314,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_from",
-                      "scope": 1104,
+                      "scope": 1403,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -327,20 +327,20 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1092,
+                        "id": 1391,
                         "name": "ElementaryTypeName",
-                        "src": "567:7:7"
+                        "src": "623:7:9"
                       }
                     ],
-                    "id": 1093,
+                    "id": 1392,
                     "name": "VariableDeclaration",
-                    "src": "567:13:7"
+                    "src": "623:13:9"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_to",
-                      "scope": 1104,
+                      "scope": 1403,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -353,20 +353,20 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 1094,
+                        "id": 1393,
                         "name": "ElementaryTypeName",
-                        "src": "582:7:7"
+                        "src": "638:7:9"
                       }
                     ],
-                    "id": 1095,
+                    "id": 1394,
                     "name": "VariableDeclaration",
-                    "src": "582:11:7"
+                    "src": "638:11:9"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_value",
-                      "scope": 1104,
+                      "scope": 1403,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -379,20 +379,20 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 1096,
+                        "id": 1395,
                         "name": "ElementaryTypeName",
-                        "src": "595:7:7"
+                        "src": "651:7:9"
                       }
                     ],
-                    "id": 1097,
+                    "id": 1396,
                     "name": "VariableDeclaration",
-                    "src": "595:14:7"
+                    "src": "651:14:9"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_data",
-                      "scope": 1104,
+                      "scope": 1403,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes memory",
@@ -405,19 +405,19 @@
                           "name": "bytes",
                           "type": "bytes storage pointer"
                         },
-                        "id": 1098,
+                        "id": 1397,
                         "name": "ElementaryTypeName",
-                        "src": "611:5:7"
+                        "src": "667:5:9"
                       }
                     ],
-                    "id": 1099,
+                    "id": 1398,
                     "name": "VariableDeclaration",
-                    "src": "611:11:7"
+                    "src": "667:11:9"
                   }
                 ],
-                "id": 1100,
+                "id": 1399,
                 "name": "ParameterList",
-                "src": "566:57:7"
+                "src": "622:57:9"
               },
               {
                 "children": [
@@ -425,7 +425,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "success",
-                      "scope": 1104,
+                      "scope": 1403,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -438,34 +438,34 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1101,
+                        "id": 1400,
                         "name": "ElementaryTypeName",
-                        "src": "633:4:7"
+                        "src": "696:4:9"
                       }
                     ],
-                    "id": 1102,
+                    "id": 1401,
                     "name": "VariableDeclaration",
-                    "src": "633:12:7"
+                    "src": "696:12:9"
                   }
                 ],
-                "id": 1103,
+                "id": 1402,
                 "name": "ParameterList",
-                "src": "632:14:7"
+                "src": "695:14:9"
               }
             ],
-            "id": 1104,
+            "id": 1403,
             "name": "FunctionDefinition",
-            "src": "545:102:7"
+            "src": "601:109:9"
           }
         ],
-        "id": 1105,
+        "id": 1404,
         "name": "ContractDefinition",
-        "src": "515:405:7"
+        "src": "571:142:9"
       }
     ],
-    "id": 1106,
+    "id": 1405,
     "name": "SourceUnit",
-    "src": "0:922:7"
+    "src": "0:715:9"
   },
   "compiler": {
     "name": "solc",
@@ -473,5 +473,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-11T18:19:19.057Z"
+  "updatedAt": "2018-02-06T10:08:15.608Z"
 }
